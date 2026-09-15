@@ -1,0 +1,21 @@
+# PLACEHOLDER ONLY.
+# Replace this file with the exact pre-configured IBM validator supplied by the hackathon.
+name: Submission Validation
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  basic-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          test -f submission.yaml
+          test -f README.md
+          test -f CONTRIBUTING.md
+          test -d src
+          test -d docs
+          test -d demo
+          test -d presentation
