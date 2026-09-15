@@ -1,0 +1,48 @@
+team:
+  name: "Photon"
+  track: "AI"
+  lead:
+    name: "TODO: Lead Member Name"
+    email: "TODO: lead@example.com"
+  members:
+    - name: "TODO: Member 1 Name"
+      email: "TODO: member1@example.com"
+    - name: "TODO: Member 2 Name"
+      email: "TODO: member2@example.com"
+    - name: "TODO: Member 3 Name"
+      email: "TODO: member3@example.com"
+    - name: "TODO: Member 4 Name"
+      email: "TODO: member4@example.com"
+
+submission:
+  title: "GridGuard AI"
+  problem_statement: >
+    Power grid operators have no predictive signal for equipment failure.
+    Equipment (transformers, switches, lines) fails unpredictably due to
+    combinations of age, load, temperature, weather exposure, and incident
+    history. When failure occurs, crews are dispatched reactively from
+    suboptimal locations with no network impact prioritisation. This leads
+    to prolonged outages, critical facility disruption, wasted field capacity,
+    and regulatory exposure — all caused by a system that reacts after failure
+    rather than acting before it.
+  solution_summary: >
+    GridGuard AI is an end-to-end AI-powered power grid failure prediction,
+    risk assessment, and crew pre-positioning platform. It implements a 7-step
+    pipeline: (1) load and validate equipment, weather, incident, and crew data;
+    (2) preprocess and engineer 21 features; (3) train a RandomForestClassifier
+    to predict failure_next_7_days; (4) score weather risk using a 4-component
+    weighted formula; (5) score grid impact from customer, criticality, load,
+    and network importance; (6) compute a composite priority score with risk
+    level and deterministic explainability; (7) assign the nearest available
+    skill-matched crew via Haversine distance. All results are visualised in a
+    7-page dark-navy enterprise command-centre dashboard with grid map, risk
+    matrix, AI decision card, scenario simulator, and alert center.
+  key_features:
+    - "RandomForestClassifier failure prediction with 21 engineered features and class balancing"
+    - "Weather Risk Engine: 0.40 x rainfall + 0.30 x wind + 0.20 x temp_stress + 0.10 x storm (0-100)"
+    - "Grid Impact Engine: 0.40 x customers + 0.20 x critical_facility + 0.20 x load + 0.20 x network_importance (0-100)"
+    - "Priority Score: 0.50 x failure_probability + 0.20 x weather_risk + 0.30 x grid_impact with CRITICAL/HIGH/MEDIUM/LOW risk levels"
+    - "Deterministic explainability: 16 threshold-based data-grounded risk factors per asset"
+    - "Crew pre-positioning: Haversine distance + skill compatibility + availability filter"
+    - "What-if Scenario Simulator: adjust wind, rain, temperature, load to explore risk escalation"
+    - "7-page enterprise dashboard: Grid Map, Risk Matrix, AI Decision Card, Crew Operations, Alert Center"

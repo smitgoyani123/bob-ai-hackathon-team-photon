@@ -1,0 +1,12 @@
+NOT RECORDED
+
+TODO: Record a 3-5 minute demo video showing the full GridGuard AI workflow:
+  1. Overview page — grid health and KPIs
+  2. Risk Command Center — risk matrix
+  3. Equipment Intelligence — T001 AI Decision Card
+  4. Live Grid Map — equipment and crew positions
+  5. Crew Operations — assignments
+  6. AI Insights — model metrics and scenario simulator
+  7. Alert Center — filtered alerts
+
+Replace this file content with the real video URL once recorded.
