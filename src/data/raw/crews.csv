@@ -1,0 +1,9 @@
+crew_id,latitude,longitude,status,skill,capacity,available_from
+C001,13.116792,77.644663,available,electrical,3,2025-01-01 06:00
+C002,13.052262,77.482953,available,electrical,2,2025-01-01 06:00
+C003,13.108287,77.589036,busy,mechanical,4,2025-01-01 14:00
+C004,12.908435,77.678096,available,mechanical,2,2025-01-01 06:00
+C005,13.084128,77.550886,available,electrical,3,2025-01-01 08:00
+C006,13.032898,77.590052,busy,civil,2,2025-01-01 16:00
+C007,12.909261,77.586155,available,civil,3,2025-01-01 06:00
+C008,13.021182,77.552463,available,electrical,2,2025-01-01 07:00
