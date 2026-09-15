@@ -1,0 +1,9 @@
+NOT DEPLOYED
+
+TODO: Deploy to a cloud platform (Streamlit Community Cloud, Hugging Face Spaces,
+or similar) and replace this file with the real URL.
+
+To run locally:
+  python src/main.py
+  streamlit run src/dashboard/app.py
+  -> http://localhost:8501
