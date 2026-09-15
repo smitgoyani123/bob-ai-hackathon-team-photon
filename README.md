@@ -17,10 +17,10 @@
 
 | Role | Name | Email |
 |---|---|---|
-| **AI / ML Engineer** | Smit Goyani | goyanismit04@gmail.com |
-| **Risk Engine Specialist** | Parikshit Matieda | parikshit.matieda2005@gmail.com |
-| **Frontend & Command Center** | Parth Mavani | parthmavani2706@gmail.com |
-| **Integration & QA Engineer** | Divy Rajput | 24it047@charusat.edu.in |
+| **Team Lead / Risk Engine** | Parikshit Matieda | 24it049@charusat.edu.in |
+| **Frontend & Command Center** | Parth Mavani | 24it050@charusat.edu.in |
+| **AI / ML Engineer** | Smit Goyani | 24it026@charusat.edu.in |
+| **Integration & QA Engineer** | Divy Mangukiya | 24it047@charusat.edu.in |
 
 ---
 

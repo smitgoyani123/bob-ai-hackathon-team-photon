@@ -1,18 +1,16 @@
 team:
-  name: "Photon"
+  name: "Team Photon"
   track: "AI"
   lead:
-    name: "TODO: Lead Member Name"
-    email: "TODO: lead@example.com"
+    name: "Parikshit Matieda"
+    email: "24it049@charusat.edu.in"
   members:
-    - name: "TODO: Member 1 Name"
-      email: "TODO: member1@example.com"
-    - name: "TODO: Member 2 Name"
-      email: "TODO: member2@example.com"
-    - name: "TODO: Member 3 Name"
-      email: "TODO: member3@example.com"
-    - name: "TODO: Member 4 Name"
-      email: "TODO: member4@example.com"
+    - name: "Parth Mavani"
+      email: "24it050@charusat.edu.in"
+    - name: "Smit Goyani"
+      email: "24it026@charusat.edu.in"
+    - name: "Divy Mangukiya"
+      email: "24it047@charusat.edu.in"
 
 submission:
   title: "GridGuard AI"
