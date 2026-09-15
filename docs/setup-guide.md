@@ -1,28 +1,32 @@
-# Setup Guide
+# 🛠️ GridGuard AI — Setup & Execution Guide
+
+This guide provides step-by-step instructions to install dependencies, run the backend ML pipeline & REST API, and launch the React 19 GIS Command Center.
+
+---
 
 ## Prerequisites
 
-- Python 3.9 or higher
-- pip
-- Git
+- **Python 3.9+** (tested on Python 3.9 – 3.13)
+- **Node.js 18+** & **npm**
+- **Git**
 
 ---
 
 ## 1. Clone the Repository
 
 ```bash
-git clone <repository-url>
-cd bob-ai-hackathon-photon
+git clone https://github.com/smitgoyani123/bob-ai-hackathon-team-photon.git
+cd bob-ai-hackathon-team-photon
 ```
 
 ---
 
-## 2. Create a Virtual Environment
+## 2. Python Virtual Environment Setup
 
 **Windows (PowerShell):**
 ```powershell
 python -m venv .venv
-.venv\Scripts\Activate.ps1
+.\.venv\Scripts\Activate.ps1
 ```
 
 **macOS / Linux:**
@@ -33,152 +37,82 @@ source .venv/bin/activate
 
 ---
 
-## 3. Install Dependencies
+## 3. Install Python Dependencies
 
 ```bash
 pip install -r src/requirements.txt
 ```
 
-Dependencies installed:
-- `pandas` — data loading and processing
-- `numpy` — numerical operations
-- `scikit-learn` — RandomForestClassifier
-- `joblib` — model serialisation
-- `streamlit` — dashboard framework
-- `plotly` — interactive charts
-- `folium` — geographic map
-- `streamlit-folium` — Folium integration for Streamlit
-- `geopy` — geospatial utilities
+Installed packages:
+- `fastapi`, `uvicorn`, `pydantic` — High-performance REST service
+- `scikit-learn`, `joblib` — Random Forest classifier & model serialization
+- `pandas`, `numpy` — Data handling, missing-value imputation & feature engineering
+- `geopy` — Spatial Haversine distance computations
 
 ---
 
-## 4. Dataset Placement
+## 4. Environment Configuration
 
-The synthetic demo datasets are already included:
+Copy the example environment template:
 
-```
-src/data/raw/
-    equipment.csv    # 30 equipment assets
-    weather.csv      # 10 weather zones
-    incidents.csv    # 30 incident records
-    crews.csv        # 8 field crews
+```bash
+cp .env.example .env
 ```
 
-To use real data, replace these files with your own CSVs maintaining the same column schema. See `docs/solution-overview.md` for column requirements.
+*(No external API keys are strictly required for offline local demonstration).*
 
 ---
 
-## 5. Run the Pipeline
+## 5. Launch Application Services
 
-From the project root:
+GridGuard AI consists of two coordinated services:
 
-```bash
-python src/main.py
-```
+### Terminal 1: Start FastAPI REST Service & ML Pipeline
 
-This will:
-1. Load all 4 raw CSVs
-2. Preprocess and feature-engineer the data
-3. Train (or load cached) the RandomForest model
-4. Calculate weather risk, grid impact, priority scores
-5. Assign crews to HIGH/CRITICAL assets
-6. Save results to `src/results/predictions.csv`
-
-To force model retraining:
+From the project root directory:
 
 ```bash
-python src/main.py --retrain
+python src/api.py
 ```
+- API initializes at: `http://localhost:8000`
+- Interactive OpenAPI / Swagger UI: `http://localhost:8000/docs`
+
+### Terminal 2: Start React 19 Frontend Command Center
+
+In a new terminal window:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+- Open your browser at: `http://localhost:5173`
 
 ---
 
-## 6. Launch the Dashboard
+## 6. Running the Standalone ML Pipeline (CLI)
+
+If you wish to execute the ML training and scoring pipeline directly via command line:
 
 ```bash
-streamlit run src/dashboard/app.py
-```
-
-The dashboard will open at `http://localhost:8501` in your browser.
-
-> **Note:** Run the pipeline at least once before launching the dashboard so that `predictions.csv` exists. Alternatively, use the **Run Pipeline** button in the dashboard sidebar.
-
----
-
-## 7. Running Individual Modules (Optional)
-
-Each module has a built-in smoke-test. Run from `src/`:
-
-```bash
-python src/data_loader.py
-python src/preprocessing.py
-python src/failure_prediction.py
-python src/weather_risk.py
-python src/grid_impact.py
-python src/priority.py
-python src/crew_assignment.py
-python src/explainability.py
 python src/pipeline.py
 ```
 
----
-
-## 8. Environment Variables
-
-No environment variables are required for the demo setup.
-
-If integrating with external services in future, copy `.env.example` to `.env` and populate:
-
+Or with forced model retraining:
 ```bash
-cp src/.env.example .env
+python src/failure_prediction.py
 ```
-
-`.env` is listed in `.gitignore` and will never be committed.
+Outputs are written to:
+- `src/models/failure_model.pkl`
+- `src/results/predictions.csv`
+- `src/data/processed/model_input.csv`
 
 ---
 
-## 9. Troubleshooting
+## 7. Troubleshooting
 
-| Error | Resolution |
+| Issue | Resolution |
 |---|---|
-| `ModuleNotFoundError` | Ensure venv is activated and `pip install -r src/requirements.txt` was run |
-| `FileNotFoundError: predictions.csv` | Run `python src/main.py` first |
-| `No data rows in CSV` | Check that `src/data/raw/*.csv` files contain data (not just headers) |
-| `Streamlit: missing ScriptRunContext` | This warning is safe to ignore when running Python scripts directly |
-| Pipeline error on model load | Run `python src/main.py --retrain` to force fresh training |
-| Map not rendering | Ensure `streamlit-folium` is installed: `pip install streamlit-folium` |
-
----
-
-## 10. Project Structure
-
-```
-bob-ai-hackathon-photon/
-├── .venv/                       # virtual environment (not committed)
-├── src/
-│   ├── config/settings.py       # centralised path config
-│   ├── data/
-│   │   ├── raw/                 # input CSVs
-│   │   └── processed/           # model_input.csv
-│   ├── models/                  # failure_model.pkl
-│   ├── results/                 # predictions.csv
-│   ├── dashboard/
-│   │   ├── app.py               # Streamlit entry point
-│   │   ├── pages/               # 7 dashboard pages
-│   │   └── styles/theme.css     # dark enterprise CSS
-│   ├── data_loader.py
-│   ├── preprocessing.py
-│   ├── failure_prediction.py
-│   ├── weather_risk.py
-│   ├── grid_impact.py
-│   ├── priority.py
-│   ├── explainability.py
-│   ├── crew_assignment.py
-│   ├── pipeline.py
-│   └── main.py
-├── docs/                        # documentation
-├── demo/                        # demo artifacts
-├── presentation/                # slide content
-├── submission.yaml
-├── README.md
-└── requirements.txt
-```
+| `Port 8000 already in use` | Check if an existing uvicorn instance is running with `netstat -ano \| findstr :8000` and terminate the process. |
+| `Frontend fails to load grid data` | Verify that the backend is active by opening `http://localhost:8000/api/health` in your browser. |
+| `Node modules error` | Run `cd frontend && npm clean-install` or `npm install`. |
