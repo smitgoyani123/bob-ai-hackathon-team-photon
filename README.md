@@ -10,10 +10,10 @@
 
 | Role | Name | Email |
 |---|---|---|
-| Lead | TODO: Lead Name | TODO: lead@example.com |
-| AI/ML Engineer | TODO: Member 1 | TODO: member1@example.com |
-| Risk & Dashboard | TODO: Member 2 | TODO: member2@example.com |
-| Integration & QA | TODO: Member 3 | TODO: member3@example.com |
+| AI/ML Engineer | Smit Goyani | goyanismit04@gmail.com |
+| Risk Engine | Parikshit Matieda | parikshit.matieda2005@gmail.com |
+| Dashboard | Parth Mavani | parthmavani2706@gmail.com |
+| Integration & QA | Divy Rajput | 24it047@charusat.edu.in |
 
 ---
 
