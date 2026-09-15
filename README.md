@@ -1,184 +1,225 @@
-# GridGuard AI
+# ⚡ GridGuard AI — Autonomous Power Grid Failure Prediction & Operational Command Center
 
-**Team:** Photon | **Track:** AI | **Hackathon:** IBM Bob Hackathon 2025
+**Team:** Photon | **Track:** AI & Smart Infrastructure | **Hackathon:** IBM Bob Hackathon 2025
 
-> Predict. Assess. Prioritize. Assign. Keep the Power On.
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+[![React 19](https://img.shields.io/badge/React-19-61dafb.svg)](https://react.dev/)
+[![FastAPI](https://img.shields.io/badge/FastAPI-1.0-009688.svg)](https://fastapi.tiangolo.com/)
+[![Leaflet GIS](https://img.shields.io/badge/Leaflet-GIS_Map-199900.svg)](https://leafletjs.com/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+> **Predict. Assess. Prioritize. Assign. Keep the Power On.**  
+> Transforming raw grid SCADA telemetry, ambient weather spikes, and historical incident logs into explainable operational field crew pre-positioning in real-time.
 
 ---
 
-## Team
+## 👥 Team Photon
 
 | Role | Name | Email |
 |---|---|---|
-| AI/ML Engineer | Smit Goyani | goyanismit04@gmail.com |
-| Risk Engine | Parikshit Matieda | parikshit.matieda2005@gmail.com |
-| Dashboard | Parth Mavani | parthmavani2706@gmail.com |
-| Integration & QA | Divy Rajput | 24it047@charusat.edu.in |
+| **AI / ML Engineer** | Smit Goyani | goyanismit04@gmail.com |
+| **Risk Engine Specialist** | Parikshit Matieda | parikshit.matieda2005@gmail.com |
+| **Frontend & Command Center** | Parth Mavani | parthmavani2706@gmail.com |
+| **Integration & QA Engineer** | Divy Rajput | 24it047@charusat.edu.in |
 
 ---
 
-## Problem Statement
+## ⚡ The Problem
 
-Power grid operators have no predictive signal for equipment failure. Transformers, switches, and transmission lines fail unpredictably due to combinations of age, load, temperature, weather exposure, and prior incident history. When failure occurs, crews are dispatched reactively from suboptimal locations with no risk prioritisation and no network impact scoring — causing prolonged outages, critical facility disruption, and wasted field capacity.
+Power grid equipment (transformers, automated switches, high-voltage transmission lines) fails unpredictably under intense thermal stress, overload, physical aging, and severe monsoon or storm conditions. Today, grid dispatchers and utilities face significant bottlenecks:
 
----
-
-## Solution
-
-GridGuard AI is an end-to-end AI-powered grid failure prediction, risk assessment, and crew pre-positioning platform. It converts raw equipment, weather, and incident data into fully explainable operational field assignments in under one second — predicting failure probability per asset, scoring weather exposure and grid impact, computing a composite priority score, explaining exactly why each asset is at risk, recommending the correct maintenance action, and assigning the nearest available skill-matched crew via Haversine distance.
-
----
-
-## Key Features
-
-- **RandomForest failure prediction** — 21 engineered features, `class_weight=balanced`, `random_state=42`
-- **Weather Risk Engine** — `0.40×rainfall + 0.30×wind + 0.20×temp_stress + 0.10×storm` (0–100)
-- **Grid Impact Engine** — `0.40×customers + 0.20×critical_facility + 0.20×load + 0.20×network_importance` (0–100)
-- **Priority Score** — `0.50×failure_probability + 0.20×weather_risk + 0.30×grid_impact` with CRITICAL/HIGH/MEDIUM/LOW levels
-- **Deterministic explainability** — 16 threshold-based data-grounded risk factors per asset
-- **Crew pre-positioning** — Haversine distance + skill match + availability filter
-- **What-if Scenario Simulator** — adjust wind, rain, temperature, load to explore risk escalation interactively
-- **7-page enterprise dashboard** — Grid Map, Risk Matrix, AI Decision Card, Crew Operations, Alert Center
+1. **Reactive Disaster Response**: Crews are dispatched only *after* a transformer explodes or a feeder trips, prolonging power restoration by hours.
+2. **Suboptimal Crew Dispatch**: Field technicians are dispatched from distant depots or lack the certified skill set required for the specific equipment type.
+3. **Black-Box Confusion**: Operators have no explainability signal explaining *why* an asset is prioritized.
+4. **Disjointed Weather & Grid Telemetry**: Weather radar and SCADA systems operate in silos, blinding engineers to localized storm impacts.
 
 ---
 
-## Tech Stack
+## 💡 The GridGuard AI Solution
 
-| Layer | Technology |
+GridGuard AI closes the loop from **raw sensor signal to proactive field dispatch**. It ingests equipment telemetry, assigns nearest weather station data via spatial Haversine mathematics, runs a 21-feature Random Forest ML failure model, computes multidimensional grid impact and weather risk, provides deterministic explainability, and automatically pre-positions certified field crews before an outage cascades.
+
+```
+┌─────────────────┐     ┌──────────────────┐     ┌──────────────────────┐
+│ Raw SCADA Data  │ ──> │  Preprocessing   │ ──> │ ML Failure Model     │
+│ Equipment/Crews │     │  & Imputation    │     │ (RandomForest 7-Day) │
+└─────────────────┘     └──────────────────┘     └──────────────────────┘
+                                                            │
+                                                            ▼
+┌─────────────────┐     ┌──────────────────┐     ┌──────────────────────┐
+│  Leaflet GIS    │ <── │ Crew Proximity   │ <── │ Priority Engine      │
+│  Command Center │     │ (Haversine Disp) │     │ (0 - 100 Multi-Risk) │
+└─────────────────┘     └──────────────────┘     └──────────────────────┘
+```
+
+---
+
+## 🌟 Key Capabilities & Features
+
+### 1. 🤖 Multi-Signal Machine Learning & Risk Engines
+- **Failure Prediction (Random Forest Classifier)**: 21 engineered features (`temp_stress`, `incident_rate`, `network_importance`, `load_risk_flag`, etc.) with `class_weight="balanced"`.
+- **Weather Risk Engine (0–100)**:
+  $$\text{Weather Risk} = 0.40 \times \text{Rainfall} + 0.30 \times \text{Wind} + 0.20 \times \text{Temp Stress} + 0.10 \times \text{Storm}$$
+- **Grid Consequence Impact Engine (0–100)**:
+  $$\text{Grid Impact} = 0.40 \times \text{Customers} + 0.20 \times \text{Critical Facility} + 0.20 \times \text{Load} + 0.20 \times \text{Importance}$$
+- **Composite Priority Score (0–100)**:
+  $$\text{Priority} = 0.50 \times (\text{Failure Prob} \times 100) + 0.20 \times \text{Weather Risk} + 0.30 \times \text{Grid Impact}$$
+  Categorized into `CRITICAL` (80–100), `HIGH` (60–80), `MEDIUM` (30–60), and `LOW` (0–30).
+
+### 2. 🔍 Zero-Hallucination Deterministic Explainability
+- Evaluates 16 data-grounded threshold rules per asset (e.g. `Aging equipment (>20 yrs)`, `Operating Temp > 70°C`, `Load > 75%`, `Critical Facility Dependency`).
+- Generates transparent, verifiable operational reasons without black-box hallucination.
+
+### 3. 🗺️ Real-World Interactive GIS Mapping
+- **Multiple Cartographic Views**:
+  - 🗺️ **OpenStreetMap Real**: Street-level topology, landmarks, substations, and roads.
+  - 🛰️ **Esri World Satellite Imagery**: Real aerial photographic view of electrical physical infrastructure.
+  - 🏙️ **City Navigation (Voyager)**: Clean urban GIS presentation.
+  - 🌙 **Tactical Dark Ops**: Command-center dark mode.
+- **Live Weather Radar Overlay**: Real-time Doppler precipitation radar powered by the RainViewer API.
+- **Pre-positioning Dispatch Lines**: Animated flight paths connecting field crew depots directly to high-risk assets with Haversine distance badges.
+- **Camera Fly-to Navigation**: Smooth animated glide to any selected equipment node.
+
+### 4. 📂 Custom CSV & Real-Time Data Ingestion
+- **One-Click Import CSV**: Directly upload custom or real-time utility equipment `.csv` files from the top navigation bar.
+- **Instant Pipeline Recalculation**: Ingests the data, runs the full end-to-end ML and risk pipeline, and dynamically updates the entire dashboard, GIS map, and crew rosters in under 2 seconds.
+- **Template Download**: Provides `equipment_template.csv` with the exact schema for instant operational onboarding.
+
+### 5. 🎛️ Interactive What-If Scenario Simulator
+- Parametric sliders for **Wind Speed**, **Rainfall**, **Operating Temp**, **Grid Load %**, **Severe Storm Flag**, and **Flood Risk**.
+- Real-time reactive recalculation comparing baseline telemetry against simulated escalations.
+
+---
+
+## 🖥️ React Command Center Suite (7 Operational Views)
+
+| View | Description |
 |---|---|
-| Language | Python 3.9+ |
-| Data Processing | pandas, NumPy |
-| Machine Learning | scikit-learn (RandomForestClassifier), joblib |
-| Dashboard | Streamlit |
-| Charts | Plotly |
-| Map | Folium + streamlit-folium |
-| Geospatial | Haversine (Python stdlib math) |
-| AI SDLC Partner | IBM Bob |
+| **1. Command Center** | Executive KPIs (Health Score 55.3%, Asset Count, Crew Fleet Readiness, Critical Facilities at Risk), Emergency Alert Ticker, Multi-Signal Risk Matrix, and Action Queue. |
+| **2. Risk Command** | Multidimensional filtering (Type, Risk, Critical Facilities), asset-class breakdown bar charts, 2D risk dispersion plot, and prioritized ranking table. |
+| **3. Live Grid Map** | Fullscreen GIS Leaflet map with real-world satellite, street, and dark layers, live Doppler rain radar, and crew-to-asset dispatch lines. |
+| **4. Equipment Intelligence** | Single-asset deep dive, physical specs, 6-vector radar signature, AI explainability factors, and one-click crew dispatch orders. |
+| **5. Crew Operations** | Fleet readiness, certified skill mapping (Electrical, Mechanical, Civil), vehicle capacities, and mapped target assets. |
+| **6. AI Insights & Sim** | Random Forest model architecture, global feature importance chart, and interactive parametric stress-testing simulator. |
+| **7. Alert Center** | Filterable operational alerts with acknowledgement checkboxes and one-click export to **CSV** and **JSON**. |
 
 ---
 
-## IBM Bob Integration
+## 🛠️ Tech Stack & Architecture
 
-IBM Bob was used as the AI software engineering and SDLC partner throughout the entire project:
-
-| Phase | Bob Mode | Usage |
-|---|---|---|
-| Architecture design | Ask + Plan | System design, module boundaries, data flow |
-| Implementation | Agent | All Python source code generated and refined |
-| Testing | Shell | Smoke-tests run after every module |
-| Code review | Agent | NaN bugs, encoding issues, edge cases fixed |
-| Documentation | Agent | All docs, README, architecture diagram generated |
-
-> IBM Bob is a **development tool**, not a runtime component. All AI decisions in GridGuard AI run on scikit-learn and deterministic Python formulas — not on a language model at runtime.
+- **Backend & Pipeline**: Python 3.9+, FastAPI, Uvicorn, pandas, NumPy, scikit-learn, joblib.
+- **Frontend Command Center**: React 19, TypeScript, Vite, Recharts, Leaflet, React-Leaflet, Lucide Icons, Vanilla CSS Design System.
+- **Geospatial Engine**: Haversine Geodesic Distance algorithms, OpenStreetMap, Esri World Imagery, RainViewer Doppler API.
+- **SDLC & AI Partner**: IBM Bob.
 
 ---
 
-## How to Run
+## 🚀 Quick Start & Installation
 
-**Prerequisites:** Python 3.9+, pip, git
+### 1. Clone & Setup Environment
 
 ```bash
-# 1. Clone the repository
+# Clone the repository
 git clone https://github.com/TODO-your-org/bob-ai-hackathon-photon.git
 cd bob-ai-hackathon-photon
 
-# 2. Create and activate virtual environment
+# Create and activate Python virtual environment
 python -m venv .venv
-source .venv/bin/activate          # macOS / Linux
-# .venv\Scripts\Activate.ps1       # Windows PowerShell
+# On Windows PowerShell:
+.\.venv\Scripts\Activate.ps1
+# On Linux/macOS:
+source .venv/bin/activate
 
-# 3. Install dependencies
+# Install Python backend dependencies
 pip install -r src/requirements.txt
-
-# 4. Run the prediction pipeline
-python src/main.py
-
-# 5. Launch the dashboard
-streamlit run src/dashboard/app.py
 ```
 
-Dashboard opens at **http://localhost:8501**
+### 2. Start Backend FastAPI Server
 
-See [`docs/setup-guide.md`](docs/setup-guide.md) for full instructions and troubleshooting.
+```bash
+# From project root:
+python src/api.py
+```
+*The FastAPI backend starts at **http://localhost:8000** (Swagger documentation available at **http://localhost:8000/docs**).*
+
+### 3. Start React 19 Frontend
+
+```bash
+# In a new terminal, navigate to frontend:
+cd frontend
+npm install
+npm run dev
+```
+*The command center opens at **http://localhost:5173**.*
 
 ---
 
-## Repository Structure
+## 📡 REST API Reference
+
+| Method | Endpoint | Description |
+|---|---|---|
+| `GET` | `/api/health` | Service health status and asset availability flag |
+| `GET` | `/api/summary` | Executive telemetry summary, health index, risk counts |
+| `GET` | `/api/predictions` | Complete predictions dataset with explainability reasons |
+| `GET` | `/api/equipment/{id}` | Single equipment technical specs and AI decision summary |
+| `GET` | `/api/crews` | Crew fleet roster, skills, and active pre-positioned targets |
+| `GET` | `/api/feature-importance`| Model weights from the trained Random Forest classifier |
+| `POST` | `/api/simulate` | Interactive what-if scenario priority calculator |
+| `POST` | `/api/pipeline/run` | Trigger full end-to-end pipeline execution |
+| `POST` | `/api/upload/equipment`| Upload custom equipment CSV and dynamically refresh grid |
+| `GET` | `/api/template/equipment`| Download standard equipment CSV template |
+
+---
+
+## 📁 Repository Structure
 
 ```
 bob-ai-hackathon-photon/
 ├── src/
-│   ├── config/settings.py          # Centralised path config
-│   ├── data/raw/                   # equipment, weather, incidents, crews CSVs
-│   ├── data/processed/             # model_input.csv (generated)
-│   ├── models/                     # failure_model.pkl (generated)
-│   ├── results/                    # predictions.csv (generated)
-│   ├── dashboard/
-│   │   ├── app.py                  # Streamlit entry point
-│   │   ├── pages/                  # 7 dashboard pages
-│   │   └── styles/theme.css        # Dark enterprise CSS theme
-│   ├── data_loader.py
-│   ├── preprocessing.py
-│   ├── failure_prediction.py
-│   ├── weather_risk.py
-│   ├── grid_impact.py
-│   ├── priority.py
-│   ├── explainability.py
-│   ├── crew_assignment.py
-│   ├── pipeline.py
-│   └── main.py
-├── docs/
-│   ├── problem-statement.md
-│   ├── solution-overview.md
-│   ├── architecture.md
-│   └── setup-guide.md
-├── demo/
-│   ├── demo-video-link.txt
-│   ├── live-demo-url.txt
-│   └── screenshots/
-├── presentation/
-│   └── gridguard-presentation.md
-├── submission.yaml
-└── README.md
+│   ├── config/settings.py          # Centralized path configuration
+│   ├── data/
+│   │   ├── raw/                    # equipment.csv, weather.csv, incidents.csv, crews.csv
+│   │   └── processed/              # model_input.csv (feature-engineered)
+│   ├── models/failure_model.pkl    # Trained Random Forest classifier
+│   ├── results/predictions.csv     # Full prediction & dispatch results
+│   ├── api.py                      # FastAPI REST service & upload engine
+│   ├── pipeline.py                 # End-to-end orchestration pipeline
+│   ├── preprocessing.py            # Missing-value imputation & feature engineering
+│   ├── failure_prediction.py       # Random Forest training & inference
+│   ├── weather_risk.py             # Weather risk formulation engine
+│   ├── grid_impact.py              # Grid consequence scoring engine
+│   ├── priority.py                 # Multi-signal priority scoring
+│   ├── explainability.py           # Deterministic threshold explainability
+│   └── crew_assignment.py          # Haversine distance & skill-matched dispatch
+├── frontend/
+│   ├── src/
+│   │   ├── components/             # Navbar.tsx, Sidebar.tsx
+│   │   ├── pages/                  # Overview, Risk, Map, Equipment, Crews, Sim, Alerts
+│   │   ├── types/grid.ts           # Strict TypeScript interfaces
+│   │   ├── index.css               # Obsidian & cyber dark command-center design system
+│   │   └── App.tsx                 # Application root & reactive state hub
+│   ├── package.json
+│   └── vite.config.ts
+├── docs/                           # Problem statement, solution, architecture, setup guides
+├── demo/                           # Video links, live URLs, and screenshots
+├── ui_diagnostic.py                # Pre-launch diagnostic test suite
+├── validate.py                     # Acceptance validation script
+└── README.md                       # Comprehensive documentation
 ```
 
 ---
 
-## End-to-End Workflow
+## 🤝 IBM Bob Integration
 
-```
-RAW DATA  -->  PREPROCESSING  -->  ML PREDICTION  -->  WEATHER RISK
-          -->  GRID IMPACT  -->  PRIORITY SCORE  -->  EXPLAINABILITY
-          -->  MAINTENANCE ACTION  -->  CREW ASSIGNMENT  -->  DASHBOARD
-```
+IBM Bob served as the AI Software Engineering partner across the complete SDLC:
+- **System Architecture**: Defining modular boundaries between data loading, ML modeling, and geospatial dispatch.
+- **Code Generation & Optimization**: Authoring robust scikit-learn models, vector-safe normalization formulas, and reactive React components.
+- **Testing & Diagnostics**: Automated smoke tests, NaN-sanitization in JSON pipelines, and end-to-end validation.
 
----
-
-## Demo
-
-- **Video:** [demo/demo-video-link.txt](demo/demo-video-link.txt) — TODO: record and add URL
-- **Live Demo:** [demo/live-demo-url.txt](demo/live-demo-url.txt) — NOT DEPLOYED
-- **Screenshots:** [demo/screenshots/](demo/screenshots/) — TODO: add after recording
+> **Integrity Note**: IBM Bob was utilized during the development lifecycle. All real-time predictions, explainability evaluations, and crew dispatches are generated locally by scikit-learn and deterministic mathematical engines.
 
 ---
 
-## Known Limitations
+## 📄 License
 
-- Dataset is **synthetic demo data** (`random_state=42`) — not real utility telemetry
-- Risk formulas are simplified composites, not calibrated against real outage history
-- `network_importance` is derived from available features, not a real network topology graph
-- Crew assignment uses nearest Haversine distance only — no traffic, shift, or multi-crew optimisation
-- ML model trained on 30 rows — metrics reflect the demo dataset, not production scale
-- No real-time data feed — pipeline must be re-run manually to refresh predictions
-
----
-
-## What We Are Most Proud Of
-
-The core innovation of GridGuard AI is the **prediction-to-decision pipeline**.
-
-Most ML projects stop at a probability score. GridGuard AI answers the operational question: *What does that score mean? What should we do? Who should go? How far are they?*
-
-Every value shown in the dashboard is calculated from actual data. Every risk explanation is grounded in a real feature threshold. No numbers are hard-coded. No metrics are fabricated.
-
-That is what makes GridGuard AI a genuine operational tool, not a demo.
+This project is licensed under the MIT License — see the [LICENSE](LICENSE) file for details.

@@ -18,6 +18,11 @@ src/models/*.pkl
 src/results/*.csv
 src/data/processed/*.csv
 
+# Frontend
+frontend/node_modules/
+frontend/dist/
+frontend/dist-ssr/
+
 # IDE / OS
 .vscode/
 .idea/
