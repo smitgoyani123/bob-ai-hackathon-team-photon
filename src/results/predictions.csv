@@ -1,0 +1,31 @@
+equipment_id,type,age,health,load,temperature,voltage,customers_served,critical_facility,latitude,longitude,weather_rainfall,weather_wind,weather_temperature,weather_storm,weather_flood_risk,failure_probability,weather_risk,grid_impact,priority_score,risk_level,maintenance_action,assigned_crew,crew_distance_km
+T001,Transformer,38,18.0,97.0,92.0,33,9500,1,12.961277,77.50378,3.0,44.7,38.3,1.0,0.28,0.92,30.18,83.21,77.0,HIGH,Preventive Maintenance,C008,8.5
+T002,Transformer,30,25.0,88.0,85.0,132,7200,1,13.098937,77.629815,76.1,6.5,34.4,0.0,0.12,0.56,26.38,74.78,55.71,MEDIUM,Monitor,N/A - below threshold,
+T003,Transformer,25,35.0,82.0,78.0,132,5800,0,13.092475,77.712369,112.0,56.5,32.0,1.0,0.68,0.87,66.45,43.33,69.79,HIGH,Preventive Maintenance,C001,7.82
+T004,Transformer,20,60.1,74.6,83.8,66,7815,0,12.945142,77.50893,71.5,50.1,32.2,0.0,0.59,0.12,43.29,47.46,28.9,LOW,Normal Maintenance,N/A - below threshold,
+T005,Transformer,20,80.6,31.2,71.1,132,7563,1,13.13587,77.543097,76.1,6.5,34.4,0.0,0.12,0.04,26.38,61.44,25.71,LOW,Normal Maintenance,N/A - below threshold,
+T006,Transformer,38,69.8,36.0,79.3,33,1059,0,12.937275,77.683221,115.9,24.8,35.7,0.0,0.05,0.18,48.99,7.75,21.12,LOW,Normal Maintenance,N/A - below threshold,
+T007,Transformer,5,46.6,20.6,53.0,11,9101,0,13.004517,77.741548,112.0,56.5,32.0,1.0,0.68,0.22,66.45,36.73,35.31,MEDIUM,Monitor,N/A - below threshold,
+T008,Transformer,31,83.3,83.0,93.1,11,5018,0,12.92679,77.600222,115.0,85.0,42.8,1.0,0.95,0.9,99.48,35.9,75.67,HIGH,Preventive Maintenance,C007,2.47
+T009,Transformer,10,25.0,73.2,88.1,66,9453,0,13.130813,77.493169,12.7,14.3,35.2,0.0,0.02,0.24,7.01,53.98,29.6,LOW,Normal Maintenance,N/A - below threshold,
+T010,Transformer,6,12.0,76.4,80.6,220,547,0,12.899382,77.454181,50.3,72.7,42.7,1.0,0.17,0.74,68.48,22.98,57.59,MEDIUM,Monitor,N/A - below threshold,
+T011,Transformer,24,18.1,82.5,42.7,11,2194,1,12.863473,77.518897,50.3,72.7,42.7,1.0,0.17,0.38,68.48,47.9,47.07,MEDIUM,Monitor,N/A - below threshold,
+T012,Transformer,43,75.0,56.7,60.3,66,5953,0,12.980529,77.489547,3.0,44.7,38.3,1.0,0.28,0.91,30.18,34.95,62.02,HIGH,Preventive Maintenance,C002,8.01
+T013,Transformer,33,51.6,65.5,32.8,132,2299,0,13.147713,77.653298,76.1,6.5,34.4,0.0,0.12,0.3,26.38,24.29,27.56,LOW,Normal Maintenance,N/A - below threshold,
+T014,Transformer,34,24.5,31.2,40.0,33,3991,0,13.117503,77.48655,12.7,14.3,35.2,0.0,0.02,0.33,7.01,18.82,23.55,LOW,Normal Maintenance,N/A - below threshold,
+T015,Transformer,32,55.1,29.2,74.4,132,7944,1,13.074582,77.601899,76.1,6.5,34.4,0.0,0.12,0.15,26.38,62.52,31.53,MEDIUM,Monitor,N/A - below threshold,
+S001,Switch,28,20.0,91.0,88.0,33,6100,1,13.117238,77.658279,76.1,6.5,34.4,0.0,0.12,0.81,26.38,67.35,65.98,HIGH,Preventive Maintenance,C001,1.48
+S002,Switch,24,72.7,57.7,92.9,220,8148,0,13.118034,77.624335,76.1,6.5,34.4,0.0,0.12,0.09,26.38,50.04,24.79,LOW,Normal Maintenance,N/A - below threshold,
+S003,Switch,7,50.2,65.2,51.2,66,1285,1,13.005658,77.509933,66.6,71.7,35.0,0.0,0.15,0.25,48.05,41.55,34.57,MEDIUM,Monitor,N/A - below threshold,
+S004,Switch,38,44.3,81.2,54.1,66,2143,0,12.944779,77.691237,115.9,24.8,35.7,0.0,0.05,0.26,48.99,25.34,30.4,MEDIUM,Monitor,N/A - below threshold,
+S005,Switch,21,37.1,70.8,60.5,11,7072,1,13.081604,77.664622,76.1,6.5,34.4,0.0,0.12,0.15,26.38,65.34,32.38,MEDIUM,Monitor,N/A - below threshold,
+S006,Switch,23,66.7,64.3,42.3,66,9532,0,13.048498,77.671695,112.0,56.5,32.0,1.0,0.68,0.23,66.45,51.99,40.39,MEDIUM,Monitor,N/A - below threshold,
+S007,Switch,17,42.6,64.7,38.4,220,2088,1,12.962097,77.489317,3.0,44.7,38.3,1.0,0.28,0.84,30.18,50.39,63.15,HIGH,Preventive Maintenance,C008,9.49
+S008,Switch,9,17.9,44.3,60.9,11,3634,0,12.87834,77.487126,50.3,72.7,42.7,1.0,0.17,0.87,68.48,19.95,63.18,HIGH,Preventive Maintenance,C008,17.39
+L001,Line,41,20.6,22.5,44.7,132,11105,0,13.074037,77.728269,112.0,56.5,32.0,1.0,0.68,0.89,66.45,50.06,72.81,HIGH,Preventive Maintenance,C004,19.2
+L002,Line,35,96.6,54.9,73.5,66,11876,0,12.928738,77.569273,115.0,85.0,42.8,1.0,0.95,0.5,99.48,59.38,62.71,HIGH,Preventive Maintenance,C007,2.84
+L003,Line,29,91.8,37.2,58.4,132,6993,1,13.131044,77.540285,12.7,14.3,35.2,0.0,0.02,0.09,7.01,60.61,24.08,LOW,Normal Maintenance,N/A - below threshold,
+L004,Line,19,73.0,52.7,84.1,132,5392,0,12.922291,77.596575,115.0,85.0,42.8,1.0,0.95,0.35,99.48,33.94,47.58,MEDIUM,Monitor,N/A - below threshold,
+L005,Line,37,33.9,88.3,75.5,66,4195,1,12.886827,77.648859,16.8,75.5,39.1,0.0,0.06,0.35,42.01,59.83,43.85,MEDIUM,Monitor,N/A - below threshold,
+L006,Line,25,97.2,38.7,50.3,33,7368,1,13.099334,77.736687,112.0,56.5,32.0,1.0,0.68,0.23,66.45,58.99,42.49,MEDIUM,Monitor,N/A - below threshold,
+L007,Line,21,80.1,24.7,84.1,132,7111,0,12.895985,77.535934,71.5,50.1,32.2,0.0,0.59,0.12,43.29,33.84,24.81,LOW,Normal Maintenance,N/A - below threshold,
