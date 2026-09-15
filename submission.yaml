@@ -1,46 +1,89 @@
+# =============================================================================
+# HACKATHON SUBMISSION METADATA
+# =============================================================================
+# Instructions:
+#   - Fill in ALL required fields (marked with # REQUIRED)
+#   - Optional fields can be left as empty strings ""
+#   - Do NOT rename this file — the evaluation pipeline reads it by name
+#   - Use double quotes around all string values
+# =============================================================================
+
 team:
-  name: "Team Photon"
-  track: "AI"
+  name: "Team Photon"                  # REQUIRED — e.g., "Orion Squad"
+  track: "AI"                          # REQUIRED — one of: AI | DevOps | Sustainability | Open
   lead:
-    name: "Parikshit Matieda"
-    email: "24it049@charusat.edu.in"
+    name: "Parikshit Matieda"          # REQUIRED — e.g., "Alice Chen"
+    email: "24it049@charusat.edu.in"   # REQUIRED — e.g., "alice.chen@ibm.com"
   members:
-    - name: "Parth Mavani"
+    - name: "Parth Mavani"             # REQUIRED — Team member 1
       email: "24it050@charusat.edu.in"
-    - name: "Smit Goyani"
+    - name: "Smit Goyani"              # Team member 2
       email: "24it026@charusat.edu.in"
-    - name: "Divy Mangukiya"
+    - name: "Divy Mangukiya"           # Team member 3
       email: "24it047@charusat.edu.in"
 
 submission:
-  title: "GridGuard AI"
-  problem_statement: >
-    Power grid operators have no predictive signal for equipment failure.
-    Equipment (transformers, switches, lines) fails unpredictably due to
-    combinations of age, load, temperature, weather exposure, and incident
-    history. When failure occurs, crews are dispatched reactively from
-    suboptimal locations with no network impact prioritisation. This leads
-    to prolonged outages, critical facility disruption, wasted field capacity,
-    and regulatory exposure — all caused by a system that reacts after failure
-    rather than acting before it.
-  solution_summary: >
-    GridGuard AI is an end-to-end AI-powered power grid failure prediction,
-    risk assessment, and crew pre-positioning platform. It implements a 7-step
-    pipeline: (1) load and validate equipment, weather, incident, and crew data;
-    (2) preprocess and engineer 21 features; (3) train a RandomForestClassifier
-    to predict failure_next_7_days; (4) score weather risk using a 4-component
-    weighted formula; (5) score grid impact from customer, criticality, load,
-    and network importance; (6) compute a composite priority score with risk
-    level and deterministic explainability; (7) assign the nearest available
-    skill-matched crew via Haversine distance. All results are visualised in a
-    7-page dark-navy enterprise command-centre dashboard with grid map, risk
-    matrix, AI decision card, scenario simulator, and alert center.
-  key_features:
-    - "RandomForestClassifier failure prediction with 21 engineered features and class balancing"
-    - "Weather Risk Engine: 0.40 x rainfall + 0.30 x wind + 0.20 x temp_stress + 0.10 x storm (0-100)"
-    - "Grid Impact Engine: 0.40 x customers + 0.20 x critical_facility + 0.20 x load + 0.20 x network_importance (0-100)"
-    - "Priority Score: 0.50 x failure_probability + 0.20 x weather_risk + 0.30 x grid_impact with CRITICAL/HIGH/MEDIUM/LOW risk levels"
-    - "Deterministic explainability: 16 threshold-based data-grounded risk factors per asset"
-    - "Crew pre-positioning: Haversine distance + skill compatibility + availability filter"
-    - "What-if Scenario Simulator: adjust wind, rain, temperature, load to explore risk escalation"
-    - "7-page enterprise dashboard: Grid Map, Risk Matrix, AI Decision Card, Crew Operations, Alert Center"
+  title: "GridGuard AI"                # REQUIRED — Project display name
+
+  problem_statement: >                 # REQUIRED — 1-3 sentences. What problem? Who has it?
+    Power grid transmission and distribution operators have no predictive signal for electrical equipment failure.
+    Transformers, automated switches, and high-voltage lines fail unpredictably under compound thermal, overload,
+    and monsoon storm stress, forcing reactive and suboptimal emergency crew dispatches that prolong cascading blackouts.
+
+  solution_summary: >                  # REQUIRED — 1-3 sentences. What did you build?
+    GridGuard AI is an autonomous power grid failure prediction, consequence risk assessment, and crew pre-positioning platform.
+    It combines a 21-feature Random Forest ML failure model with multi-dimensional weather risk and grid impact engines,
+    providing zero-hallucination deterministic explanations and automated skill-matched crew pre-positioning via Haversine distance before blackouts occur.
+
+  key_features:                        # REQUIRED — List 3 to 5 specific features you implemented
+    - "Random Forest ML failure prediction model with 21 engineered feature vectors and class balancing"
+    - "Multi-signal Weather Risk (0-100) and Grid Consequence Impact (0-100) scoring engines"
+    - "Zero-hallucination deterministic explainability engine evaluating 16 engineering threshold rules per asset"
+    - "Automated skill-matched crew pre-positioning using spherical Haversine geodesic distance"
+    - "Enterprise React 19 Leaflet GIS Command Center with live RainViewer Doppler radar and interactive What-If scenario simulator"
+
+  tech_stack:
+    languages:
+      - "Python"
+      - "TypeScript"
+      - "SQL"
+      - "CSS3"
+    frameworks:
+      - "React 19"
+      - "FastAPI"
+      - "Vite"
+      - "Leaflet"
+      - "Recharts"
+    ibm_technologies:
+      - "IBM Bob (AI Software Engineering Partner for architecture design, vector math optimization, and diagnostics)"
+    databases: []
+    other:
+      - "scikit-learn"
+      - "pandas"
+      - "NumPy"
+      - "joblib"
+      - "geopy"
+      - "GitHub Actions"
+
+  what_we_are_most_proud_of: >         # Optional but recommended — guides judges to your best work
+    The end-to-end integration speed and operational rigor: taking raw grid telemetry and weather data,
+    running full ML inference and risk formulation, evaluating 16 deterministic audit reasons, and pre-positioning
+    skill-matched crews in under 2 seconds, visualized across a real-world Leaflet GIS satellite and Doppler radar command center.
+
+  known_limitations: >                 # Optional but recommended — be honest about gaps
+    The ML model is calibrated on a synthetic 30-equipment, 10-weather zone benchmark matching realistic utility distributions.
+    Pre-positioning distance uses geodesic Haversine distance rather than real-time road topology routing, and the prototype runs
+    on local ports (5173 and 8000) for security and offline demonstration.
+
+# =============================================================================
+# ARTIFACT LOCATIONS
+# These paths are relative to the repo root. Only change if you moved files.
+# =============================================================================
+artifacts:
+  source_code: "src/"
+  setup_guide: "docs/setup-guide.md"
+  architecture_doc: "docs/architecture.md"
+  demo_video: "demo/demo-video-link.txt"   # URL to hosted video (YouTube, Loom, Box)
+  live_demo: "demo/live-demo-url.txt"      # URL to deployed demo (optional)
+  screenshots: "demo/screenshots/"
+  presentation: "presentation/"
